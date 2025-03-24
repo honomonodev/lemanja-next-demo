@@ -1,17 +1,28 @@
 @import "tailwindcss";
-/* Light mode */
+
+/* Default Light Mode */
 html {
-  background-color: #ffffff; /* Light background */
-  color: #171717; /* Dark text */
+  background-color: #ffffff;  /* Light background */
+  color: #171717;  /* Dark text */
+  scroll-behavior: smooth;
 }
 
-/* Dark mode styles */
+/* Dark Mode Styles (for html and body) */
 html.dark {
-  background-color: #171717; /* Dark background */
-  color: #f1f1f1; /* Light text */
+  background-color: #171717;  /* Dark background */
+  color: #f1f1f1;  /* Light text */
 }
-html {
-  scroll-behavior: smooth;
+
+body {
+  background-color: #ffffff;  /* Default background color */
+  color: #171717;  /* Default text color */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dark mode styles for the body */
+body.dark {
+  background-color: #171717;  /* Dark background for body */
+  color: #f1f1f1;  /* Light text for body */
 }
 
 :root {
@@ -19,11 +30,9 @@ html {
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.dark {
+  --background: #171717;
+  --foreground: #f1f1f1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,10 +40,4 @@ html {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

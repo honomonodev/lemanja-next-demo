@@ -9,19 +9,14 @@ export default function Navbar() {
 
   // Check stored theme in localStorage on mount and apply it
   useEffect(() => {
-    // Get stored theme preference
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
       setIsDark(storedTheme === "dark");
-      // Apply the dark mode class on the <html> element based on the stored theme
       document.documentElement.classList.toggle("dark", storedTheme === "dark");
-      console.log("Initial theme from localStorage:", storedTheme); // Log initial theme
     } else {
-      // If no theme is saved, check system preference
       const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
       setIsDark(prefersDarkMode);
       document.documentElement.classList.toggle("dark", prefersDarkMode);
-      console.log("No theme in localStorage. Using system preference:", prefersDarkMode ? "dark" : "light");
     }
   }, []);
 
@@ -33,20 +28,19 @@ export default function Navbar() {
     // Apply the dark class based on the new theme (after state update)
     if (!isDark) {
       document.documentElement.classList.add("dark");
-      console.log("Dark mode applied"); // Log when dark mode is applied
+      console.log("Dark mode applied");
     } else {
       document.documentElement.classList.remove("dark");
-      console.log("Light mode applied"); // Log when light mode is applied
+      console.log("Light mode applied");
     }
 
     localStorage.setItem("theme", newTheme); // Store the theme in localStorage
-    console.log("Stored theme in localStorage:", newTheme); // Log the theme saved to localStorage
+    console.log("Stored theme in localStorage:", newTheme);
   };
 
   return (
     <header className="w-full bg-white dark:bg-gray-900 shadow-sm fixed top-0 left-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        {/* Logo or Name */}
         <Link href="/" className="text-xl font-bold text-sky-700">
           🌊
         </Link>
@@ -70,9 +64,7 @@ export default function Navbar() {
         </button>
 
         {/* Menu links */}
-        <nav
-          className={`${isOpen ? "block" : "hidden"} sm:flex space-x-4 items-center`}
-        >
+        <nav className={`${isOpen ? "block" : "hidden"} sm:flex space-x-4 items-center`}>
           <Link href="#about" className="text-gray-700 hover:text-sky-700 transition-colors duration-200">
             Sobre mi
           </Link>
